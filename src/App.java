@@ -1,4 +1,6 @@
 import java.util.Random;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 /** 
  * MIT License
@@ -103,7 +105,21 @@ public class App {
         return vetor;      
     }
     
+    static void timeOperations(int[] vTamanho, Function<int[], Integer> funcao){
+
+        operacoes = 0;
+        long inicio = System.nanoTime();
+
+        funcao.apply(vTamanho);
+
+        long fim = System.nanoTime();
+        System.out.println(operacoes);
+        System.out.println(fim - inicio);
+
+    }
+    
     public static void main(String[] args) {
-        
+
+        timeOperations(TAMANHOS_TESTE_PEQUENO, t -> codigo1(new int[t]));
     }
 }
